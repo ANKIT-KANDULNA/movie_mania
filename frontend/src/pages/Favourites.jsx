@@ -3,16 +3,15 @@ import { useMovieContext } from '../contexts/MovieContext';
 import MovieCard from '../components/movieCard';
 
 function Favourites(){
-    const {favourites} = useMovieContext();
-    if(favourites){
+    const [favourites] = useMovieContext();
+    if(favourites.length > 0){
         return (
             <div className='favourites'>
                 <h2>Your Favourite movies:</h2>
                 <div className="movies-grid">
-                    {favourites.map((movie) => 
-                        movie.title.toLowerCase().startsWith(searchQuery) &&
-                        (<MovieCard movie={movie} key={movie.id}></MovieCard>)
-                    )}
+                    {favourites.map((movie) => (
+                        <MovieCard movie={movie} key={movie.id} />
+                    ))}
                 </div>
             </div>
         )
